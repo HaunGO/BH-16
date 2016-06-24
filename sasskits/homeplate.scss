@@ -1,0 +1,246 @@
+// 
+/* 
+
+
+ */
+
+
+
+.homeplate{
+    // border:3px dashed red;
+
+    *{  z-index:5;  }
+
+    position:relative;
+    overflow:hidden !important;
+
+    display:block;
+    // display: flex;
+
+
+
+    // padding:5em 0 3em 0;
+    height:100vh;
+    min-height:1000px;
+
+    overflow:hidden;
+
+    background-image:url('http://lorempixel.com/1200/1000/abstract/3/');
+    background-color:Moccasin;
+    background-attachment:fixed;
+    background-size:cover;
+
+    // @include ptPos(5);
+
+
+    // @include ptBreakpoint($sm){
+        // padding:10em 0 15em 0;
+
+        .cssvhunit &{
+            // height:100%;
+            height:100vh;
+            // padding:5em 1em;
+        }  
+
+        .no-touchevents &{
+            // background-attachment:fixed;
+        }
+
+    // }
+
+
+
+    // &:before {
+    //     content:'';
+    //     position:absolute; top:0; left:0; bottom:0; right:0;
+    //     width:100%; height:100%;
+    //     display:block;
+    //     z-index:1;
+    //     background: url('http://www.domain40.pagetree.com/app/webroot/userfiles/273/Image/tpl/slide-texture.png') top left fixed;
+    // }
+
+    /* 
+      -webkit-filter: url("#filter");
+      filter: url("#filter");
+    */
+
+}
+ 
+
+.main{
+    z-index:50;
+}
+
+
+
+.homeplate-headline{
+    *{margin:0;padding:0;}
+
+    position:relative;
+    // color:#fff;
+    // text-transform:capitalize;    
+    text-align:center;
+
+    h1{
+        font-size:2rem;
+        // @include ptBreakpoint($md){
+        // }
+    }
+
+}
+
+
+
+.homeplate-bg{
+    // *{display:block;}
+    display:block;
+    z-index:  0;
+    
+    position:fixed; 
+    // position:absolute; 
+    top:0; left:0; bottom:0; right:0;
+    width:100%;
+    height:100%;
+
+    // top:0;
+    // transform:translate(0, -50%)
+    
+
+    
+    // border:1px solid blue;
+}
+
+
+
+ 
+.homeplate-logo{
+    z-index:60;
+
+    display:block;
+    width:100%;
+
+    position:relative; 
+    bottom:0;
+    
+    position:fixed; bottom:0; left:0; right:0; width:100%; height:auto;
+
+}
+
+ 
+
+
+
+
+ 
+
+
+
+
+svg{
+    display:block;
+}
+
+
+#BRANDONHAUN{
+    display:block;
+    // position:fixed; bottom:0; left:0; right:0; width:100%; height:auto;
+
+    background: linear-gradient(to bottom,
+        rgba(255,255,255,0) 1%, 
+        rgba(255,255,255,0.5) 50%,     
+        rgba(255,255,255,1) 100%);     
+
+
+    .beReg{
+        border:1px solid red;
+        position:relative;
+    }
+}
+
+#BRANDON{
+    // fill:indianred;
+}
+
+#HAUN{
+    // fill:CADETBLUE;
+    // fill:STEELBLUE;
+}
+
+
+
+$filterGlitchc: url("#filterGlitch");
+
+@mixin filterGlitch(){
+    -webkit-filter: $filterGlitchc;
+    filter: $filterGlitchc;
+}
+
+
+
+
+.filterGlitch{
+    @include filterGlitch();
+
+    .no-touchevents & {    
+    }    
+}
+
+
+
+#my-homeplate{
+}
+
+
+.svg-filters{
+    left:-100%;
+    position:absolute;
+    opacity:0;
+    // display:none;
+}
+
+
+
+button{   
+    position: absolute;
+    top:1em; left:1em;
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+.main{
+
+    &:before{
+        content:'';
+        position:absolute;
+        top:-200px; left:0; right:0;
+        height:200px;
+        background: linear-gradient(to bottom, rgba(255,255,255,0) 0%, rgba(255,255,255,0) 1%, rgba(255,255,255,1) 100%); 
+
+    }
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

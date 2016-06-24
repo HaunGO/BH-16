@@ -1,0 +1,320 @@
+
+
+
+
+
+
+ 
+
+
+
+
+/* 
+    <div class="quick-contact">
+      <ul class="list-inline">
+        <li><a href="#"><i class="fa fa-phone"></i>phone</a></li>
+        <li><a href="#"><i class="fa fa-envelope"></i>email</a></li>
+        <li><a href="#"><i class="fa fa-map-marker"></i>location</a></li>
+      </ul>
+    </div>
+*/
+
+
+
+/* 
+    <div id="sitenav" class="navbar navbar-default" >
+      <div class="container">
+
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <i class="fa fa-bars"></i>
+            </button>
+            <a class="navbar-brand" href="#"><img src="assets/img/logo-brookings-white-sm.png" alt="Brookings Anglers logo"></a>
+        </div>
+
+        <div id="navbar" class="navbar-collapse collapse navbar-right" aria-expanded="false" style="height: 1px;">
+            <ul class="nav navbar-nav" > 
+                <li><a href="#company">Company</a></li>
+                <li><a href="#acquisitions">Acquisitions</a></li>
+                <li><a href="#development">Development</a></li>
+                <li><a href="#management">Management</a></li>
+                <li><a href="#brokerage">Brokerage</a></li>
+            </ul>
+        </div>
+
+      </div>
+    </div> 
+ */
+
+
+ 
+$quick-contact-height:2em;
+
+$quick-contact-bg: #1f1f1f;
+
+$nav-border-color: #78756e;
+
+$nav-bgcolor: rgba(0,0,0,0.9);
+
+$nav-btn-highlight: $pt-color-primary;
+ 
+
+#sitenav {
+
+    z-index:99;
+    margin:0;
+    padding:0;
+
+    // position:fixed;
+    // position:relative;
+
+    width:100%;
+    left:0; right:0; 
+    top:$quick-contact-height;
+
+    transition:0.2s;
+
+    border-radius:0;
+    border:0;
+
+    border-color:transparent;
+
+    background-color:$nav-bgcolor;
+
+    .js &{
+        background-color:rgba(0,0,0,0);
+        position:fixed;
+    }
+
+    &.bg-solid{
+        background-color:rgba(0,0,0,0.9);
+        // .navbar-brand.navbar-brand{
+        div .navbar-brand{
+            opacity:1;
+        }
+    }
+
+
+
+    &.nav-is-open{
+        background-color:$quick-contact-bg;
+        .navbar-brand{
+            opacity:1 !important;
+        }
+    }
+
+
+
+
+
+    .navbar-header{
+        .navbar-brand{
+            opacity:0;    
+        }
+    }
+
+
+
+
+
+.navbar-brand{
+    opacity:1;
+    transition:0.2s;
+
+    padding:0;
+    margin:0 1em 0 1em;    
+
+    position:relative;
+    display:block;
+
+    width:110px;
+    height:52px;  
+
+    z-index:199;
+
+    >img{
+        position:relative;
+        display:block;
+
+        width:auto;
+        height:52px;    
+
+        z-index:199;
+    }
+
+}
+
+
+
+
+
+
+
+
+
+    .navbar-toggle{
+        border:0;
+        background-color:black;
+        color:white;
+        right:1em;
+
+        &:hover,&:focus{
+            color:black;
+            background-color:white;
+        }
+
+    }
+
+
+
+    .dropdown-menu{
+        background-color:    $nav-bgcolor;
+    }
+
+
+    #navbar{
+
+        margin:0 auto 0 auto;
+        text-transform: uppercase;
+        box-shadow:initial;
+        border-top:0;
+
+        li > a{
+            color:white;
+            padding:10px;
+            margin:5px 2px;
+            border:1px solid transparent;
+            &:hover{
+                background-color:rgba($nav-btn-highlight, 0.5);
+            }
+            &.active{
+                background-color:$nav-btn-highlight;
+            }
+        }
+
+        li.open > a{
+            background-color: $nav-btn-highlight;
+        }
+
+        li.active a{
+            background-color:$nav-btn-highlight;
+        }
+
+
+        @include ptBreakpoint($sm){
+            ul.nav{
+                float:right;
+            }
+        }
+
+        @include ptBreakpoint($md){
+            position:absolute;
+            margin:auto;
+            width:100%;
+
+            ul.nav{
+                float: none;
+                position: relative;
+                margin: auto;
+                left: 50%;
+                transform: translateX(-50%);      
+
+                display:flex;
+                justify-content:center;
+
+            }
+
+        }
+
+
+
+    }
+
+}
+
+
+ 
+
+ 
+
+
+
+
+
+
+
+.quick-contact{
+
+    height:$quick-contact-height;
+
+    position:fixed;
+    top:0;
+    left:0; 
+    right:0;  
+
+    display:flex;
+    flex-direction:row;
+    // justify-content:space-around;
+    justify-content:center;
+    // justify-content:flex-end;
+    align-items:center;
+
+    background-color:$quick-contact-bg;
+    // color:#999;
+
+    padding:0 1em;
+
+    z-index:100;
+
+
+    @include ptBreakpoint($sm){
+        justify-content:flex-end;
+    }
+
+
+
+
+    h1,h2,h3,h4,h5,h6{
+        color:$pt-color-offwhite;
+    }
+
+    a{
+        font-weight:normal;
+        // color:$apg-blue;
+        &:hover, &:focus{
+          // color:$pt-color-primary;
+        }
+    }
+
+
+    ul{
+        margin:0;
+    }
+    .fa{
+        margin-right:0.5em;
+        margin-left:1em;
+    }
+
+
+
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
