@@ -79,39 +79,138 @@ var SITE = {
 
 
 
-
-        SITE.buildGlitch();
-
-
         SITE.buildFlickr();
+
+        // SITE.buildGlitch($('.homeplate-logo'));
+        // SITE.buildGlitch($('.my-svg'));
 
         SITE.buildLogo();
 
     }
 
 
- 
+  
 
  
     ,newFunction: function() { }
 
 
 
-
+ 
 
 
     ,buildLogo: function() { 
-        // PT.log('buildLogo(){', 'green');
+        PT.log('buildLogo(){', 'green');
 
-        // var scene1 = new ScrollMagic.Scene({
-        //     triggerElement: $('.hp-logo-trigger')
-        //     // ,triggerHook: 'onLeave'
-        // })
-        // .setPin($('.homeplate-logo'), {pushFollowers: false})
-        // .duration( $('.main').height() )
-        // // .setClassToggle($('.homeplate-logo'), "beReg")
-        // .addIndicators()
-        // // .addTo(PT.SM_CTRL);
+        $(window).resize(function(){
+            $('.homeplate-logo').width( $(window).width() );
+        });
+
+ // $('.homeplate').height( $(window).height() - $('.homeplate-logo').height() );
+ // $('.homeplate').height( $(window).height() + 20 );
+
+
+
+// THIS IS REEEAAAALLLL  NIICE !
+        var scene1 = new ScrollMagic.Scene({
+            triggerElement: $('.main')
+            ,triggerHook: 'onEnter'
+            // ,offset: - $('.homeplate-logo').height()
+        })
+        .setPin($('.homeplate-logo'), {pushFollowers: false})
+        .duration( $('.main').height() + $('.homeplate-logo').height())
+        // .setTween( TweenMax.to('.homeplate-logo', 1, {yPercent:'-100'}) )
+        .addIndicators()
+        .addTo(PT.SM_CTRL);
+
+
+//~~
+        var scene2 = new ScrollMagic.Scene({
+            triggerElement: $('.hp-logo-trigger')
+            ,triggerHook: 'onLeave'
+            // ,offset: - $('.homeplate-logo').height()
+        })
+        .addIndicators()
+        .on("enter", function (event) {
+            $('.homeplate-logo').addClass('beFixedTop')
+        //     TweenMax.to('.homeplate-logo', 0.2, {yPercent:'0'})
+            // scene1.enabled(false)
+        })        
+        .on("leave", function (event) {
+            $('.homeplate-logo').removeClass('beFixedTop')
+        //     TweenMax.to('.homeplate-logo', 0.2, {yPercent:'-100'})
+        //     scene1.enabled(true)
+        })        
+        .addTo(PT.SM_CTRL);
+
+
+/*
+//  EVENTS :
+        scene1.on('start enter leave end ', function(event) {
+            console.log(event.type + ' - '+ event.state + ' - ' + event.scrollDirection );
+            // TweenMax.to('.homeplate-logo', 1, {opacity:0.2, ease:Power1.easeInOut})
+        })
+*/
+
+
+
+//  FOLLOW CURSOR :
+
+        var mySVG = $('.my-svg');  
+        TweenMax.set(mySVG, {transformOrigin:"-50% -50%" });
+
+        $(".homeplate").on('mousemove', function(e){
+            // TweenMax.to($("#my-svg"), 0, {x: e.pageX, y:e.pageY });
+            TweenMax.to(mySVG, 0.5, {
+              x: e.pageX-mySVG.width()/2
+              ,y:e.pageY-mySVG.height()/2
+              ,ease:Power4.easeOut
+            });
+        });
+
+
+
+
+
+/*
+
+
+        TweenMax.fromTo('.homeplate-logo', 5, 
+             {yPercent:'0', opacity:0}
+            ,{yPercent:'-100', opacity:1, ease:Power1.easeOut, delay:1 });
+
+        var scene1 = new ScrollMagic.Scene({
+            triggerElement: $('.main')
+            ,triggerHook: 'onEnter'
+            ,offset: - $('.homeplate-logo').height()
+        })
+        .setPin($('.homeplate-logo'), {pushFollowers: false})
+        .duration( $('.main').height() )
+        .addIndicators()
+        .on('end', function(event) {
+            TweenMax.to('.homeplate-logo', 1, {yPercent:0, ease:Power1.easeInOut})
+        })
+        .addTo(PT.SM_CTRL);
+
+
+        var scene2 = new ScrollMagic.Scene({
+            triggerElement: $('.hp-logo-trigger')
+            ,triggerHook: 'onLeave'
+            ,offset: - $('.homeplate-logo').height()
+        })
+        .addIndicators()
+        .on("enter", function (event) {
+            $('.homeplate-logo').addClass('beFixedTop')
+            scene1.enabled(false)
+        })        
+        .on("leave", function (event) {
+            $('.homeplate-logo').removeClass('beFixedTop')
+            scene1.enabled(true)
+        })        
+        .addTo(PT.SM_CTRL);
+
+*/
+
 
 
     }
@@ -122,15 +221,16 @@ var SITE = {
 
 
 
- 
-
-
-
 
 
  
-    ,buildGlitch: function() {
+    ,buildGlitch: function(_this_) {
         PT.log('buildGlitch(){', 'green');
+
+        // var _target = $('.viewport');
+        var _target = $('.homeplate-logo');
+        var _target = _this_;
+
 
         var btn = $('body');
 
@@ -139,14 +239,18 @@ var SITE = {
 
         var filterGlitch = $('filter#filterGlitch');
 
-        var btnTL = new TimelineMax({ 
+        var tl_GLITCH = new TimelineMax({ 
             paused: true,
             // repeat: 5,
             // yoyo: true,
             // repeatDelay: 3,
+            onStart: function(){
+                _target.addClass('filterGlitch');
+            },
             onComplete: function() {
                 // TweenMax.delayedCall(2, playStatic)
-                $('.viewport').removeClass('filterGlitch');
+                _target.removeClass('filterGlitch');
+                resetTimer();
             }, 
             onUpdate: function() {
                     // turb.setAttribute('baseFrequency', '0.05 ' + turbVal.val);
@@ -155,10 +259,13 @@ var SITE = {
             });
 
 
-            btnTL.to(turbVal, 0.3, { val: 0.4,
+            tl_GLITCH.to(turbVal, 0.3, { val: 0.4, opacity:0.8,
                                  ease: RoughEase.ease.config({ template: Power0.easeNone, strength: 2, points: 2, taper: "none", randomize: true, clamp: false})
                                  });
-            btnTL.to(turbVal, 0.2, { val: 0.000001,
+            // tl_GLITCH.to(turbVal, 0.2, { val: 0.000001,
+            //                      ease: RoughEase.ease.config({ template: Power0.easeNone, strength: 2, points: 2, taper: "none", randomize: true, clamp: false})
+            //                      });
+            tl_GLITCH.to(turbVal, 0.2, { val: 0.000001, opacity:1,
                                  ease: RoughEase.ease.config({ template: Power0.easeNone, strength: 2, points: 2, taper: "none", randomize: true, clamp: false})
                                  });
 
@@ -166,20 +273,29 @@ var SITE = {
 
             btn.on('click', function() {
 
-                $('.viewport').addClass('filterGlitch');
-                btnTL.restart();
-            });
+                // $('.viewport').addClass('filterGlitch');
+                tl_GLITCH.restart();
+            });tl_GLITCH
 
             // TweenMax.delayedCall(2, playStatic);
             //My instructions...
 
-            function playStatic(){
-              btnTL.restart();                
+
+
+            function resetTimer(){
+                TweenMax.delayedCall( Math.floor(Math.random() * 10) , playStatic);
             }
 
+            function playStatic(){
+                console.log('honk');
+                tl_GLITCH.restart();                
+            }
 
+            playStatic();
 
     }
+
+
 
 
 
@@ -250,7 +366,7 @@ var SITE = {
 
             // var link = data.items[0].media.m.replace('_m', '_z');
 
-
+ 
             var num = Math.floor( Math.random() * data.items.length );
             console.log(num);
 
@@ -302,7 +418,7 @@ var SITE = {
     }
 
 
-
+ 
 
 
 

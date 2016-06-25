@@ -21,12 +21,12 @@
 
     // padding:5em 0 3em 0;
     height:100vh;
-    min-height:1000px;
+    // min-height:600px;
 
     overflow:hidden;
 
-    background-image:url('http://lorempixel.com/1200/1000/abstract/3/');
-    background-color:Moccasin;
+    // background-image:url('http://lorempixel.com/1200/1000/abstract/3/');
+    background-color:lightblue;
     background-attachment:fixed;
     background-size:cover;
 
@@ -96,22 +96,26 @@
     display:block;
     z-index:  0;
     
-    position:fixed; 
-    // position:absolute; 
+    // position:fixed; 
+    position:absolute; 
     top:0; left:0; bottom:0; right:0;
     width:100%;
     height:100%;
+    overflow: hidden;
+
+    background-attachment:fixed;
+    background-color:green;
+
 
     // top:0;
     // transform:translate(0, -50%)
     
 
-    
     // border:1px solid blue;
 }
 
 
-
+ 
  
 .homeplate-logo{
     z-index:60;
@@ -119,10 +123,30 @@
     display:block;
     width:100%;
 
-    position:relative; 
-    bottom:0;
+    position:relative;
+    // transform:translateY(-100%); 
     
-    position:fixed; bottom:0; left:0; right:0; width:100%; height:auto;
+    // position:fixed; bottom:0; left:0; right:0; width:100%; height:auto;
+
+    &.beRel{
+        position:relative !important ; 
+        top:initial; left:initial; bottom:initial; right:initial; height:auto;
+    }
+    &.beFixedTop{
+        position:fixed !important;
+        top:0 !important; 
+        left:0 !important; 
+        right:0 !important; 
+        width:100% !important; 
+        height:auto !important;
+    }
+    &.beFixedBottom{
+        position:fixed !important;
+        bottom:0; left:0; right:0; width:100%; height:auto;
+    }
+
+    // position:fixed;
+    // bottom:0; left:0; right:0; width:100%; height:auto;
 
 }
 
@@ -134,7 +158,13 @@
  
 
 
+$filterGlitchc: url("#filterGlitch");
 
+
+@mixin filterGlitch(){
+    -webkit-filter: $filterGlitchc;
+    filter: $filterGlitchc;
+}
 
 svg{
     display:block;
@@ -145,35 +175,30 @@ svg{
     display:block;
     // position:fixed; bottom:0; left:0; right:0; width:100%; height:auto;
 
-    background: linear-gradient(to bottom,
-        rgba(255,255,255,0) 1%, 
-        rgba(255,255,255,0.5) 50%,     
-        rgba(255,255,255,1) 100%);     
+    // background: linear-gradient(to bottom,
+    //     rgba(255,255,255,0) 1%, 
+    //     rgba(255,255,255,0.5) 50%,     
+    //     rgba(255,255,255,1) 100%);     
 
+    
 
-    .beReg{
-        border:1px solid red;
-        position:relative;
-    }
 }
 
 #BRANDON{
+    // fill:rgba(0,0,0,0.5);
+    // fill:white;
     // fill:indianred;
 }
 
 #HAUN{
+    // fill:rgba(0,0,0,0.5);
+    // fill:white;
     // fill:CADETBLUE;
     // fill:STEELBLUE;
 }
 
 
 
-$filterGlitchc: url("#filterGlitch");
-
-@mixin filterGlitch(){
-    -webkit-filter: $filterGlitchc;
-    filter: $filterGlitchc;
-}
 
 
 
@@ -188,6 +213,13 @@ $filterGlitchc: url("#filterGlitch");
 
 
 #my-homeplate{
+    overflow:hidden;
+    
+    .homeplate-logo{
+        // border:1px solid red;
+        position:absolute;
+        bottom:0;
+    }
 }
 
 
@@ -211,24 +243,110 @@ button{
 
 
 
+.hp-logo-trigger{
+    border-top:1px solid red;
+    color:red;
+    background-color:black;
+    padding:0;
+    margin:0;
+    text-align:center;
+    font-size:0.5em;
+    height:0;
+    overflow:visible;
+}
 
 
-
-
+.homeplate{
+    @include jagged(  $color: fff, 
+                        $size: 50, 
+                        $location: bottom, 
+                        $type: fill, 
+                        $side: inside, 
+                        $animate: true
+                    )    
+}
 
 
 .main{
 
-    &:before{
-        content:'';
-        position:absolute;
-        top:-200px; left:0; right:0;
-        height:200px;
-        background: linear-gradient(to bottom, rgba(255,255,255,0) 0%, rgba(255,255,255,0) 1%, rgba(255,255,255,1) 100%); 
+    // &:before{
+    //     content:'';
+    //     position:absolute;
+    //     top:-300px; left:0; right:0;
+    //     height:300px;
+    //     background: linear-gradient(to bottom, rgba(255,255,255,0) 0%, rgba(255,255,255,0) 1%, rgba(255,255,255,1) 100%); 
 
-    }
+    // }
+
+
+    @include jagged(  $color: fff, 
+                        $size: 50, 
+                        $location: top, 
+                        $type: fill, 
+                        $side: outside, 
+                        $animate: true
+                    )
+
+
+
+
+    // @include jagged(  $color: 333, 
+    //                     $size: 50, 
+    //                     $location: bottom, 
+    //                     $type: fill, 
+    //                     $side: inside, 
+    //                     $animate: false
+    //                 )
+
+
 
 }
+
+
+.homeplate-bg{
+    clip-path: url(#myClip);
+}
+
+
+
+.blend-mask{
+    // color:black;
+
+    position: absolute; 
+    top:0; left:0; bottom:0; right:0;
+    width:100%; height:100%;
+
+    pointer-events:none;
+
+    // background-color: #fff;
+    background-color: #999;
+    mix-blend-mode: screen;    
+
+}
+
+
+.my-svg{
+    // border:1px solid red;
+    position:absolute;
+    display:block;
+    // width:110%; height:110%;
+    // top:-5%; left:-5%;
+    // width:100%; height:auto;
+    // top:50%; left:50%;
+    // transform:translate(-50%, -50%);
+
+}
+
+
+
+
+
+
+
+
+
+
+
 
 
 

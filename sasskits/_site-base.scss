@@ -74,6 +74,19 @@ html,body{
 
 
 
+.pt-text-container{
+    width:100%;
+    max-width:$bh-textwidth;
+    // max-width:initial;
+    position: relative;
+    margin-left:auto;
+    margin-right:auto;
+    padding:0;
+
+}
+
+
+
 
 
 
@@ -86,7 +99,7 @@ html,body{
 .main{
     position:relative;
     z-index:1;
-    background-color:white;
+    // background-color:white;
 }
 
 
@@ -662,7 +675,7 @@ ul.social-media-icons {
 
 
 
-
+ 
 
 
 
@@ -677,11 +690,16 @@ ul.social-media-icons {
   text-align:center;
   padding:0.5em;
   border-radius:50%;
+
+
+  // @include jagged($color: 000, $size: 16, $location: bottom, $type: fill, $side: outside, $animate: false)
+
+
 }
 
 
 
-
+ 
 
 
 

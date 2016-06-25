@@ -213,13 +213,14 @@
 
 
 
-.no-touch .pt-bg-fixed{
+.no-touchevents .pt-bg-fixed{
 	
 	background-attachment:fixed !important;
 	// will-change:transform !important;
 	// backface-visibility: hidden !important;
 	// transform:translate3d(0, 0, 0);
 	// transform: translate(0,0);
+ 
 }
 
 .pt-bg-transparent{
