@@ -82,9 +82,14 @@ var SITE = {
         SITE.buildFlickr();
 
         // SITE.buildGlitch($('.homeplate-logo'));
+
         // SITE.buildGlitch($('.my-svg'));
 
-        SITE.buildLogo();
+        // SITE.buildLogo();
+        
+        SITE.buildLogo2();
+
+
 
     }
 
@@ -99,15 +104,167 @@ var SITE = {
  
 
 
+    ,buildLogo2: function() { 
+
+        var HP = $('.homeplate');
+        var LOGO = $('.homeplate-logo');
+
+        // LOGO.addClass('beFixedBottom');
+
+
+        //  LOGO RESIZER :
+        $(window).resize(function(){
+            LOGO.width( $(window).width() );
+        });
+
+        // RESIZE HOMEPLATE :
+        HP.height( $(window).height() );
+
+
+// LOGO.addClass('bgGradientToBottom');
+
+
+        var SM_SCENE1 = new ScrollMagic.Scene({
+            triggerElement: $('.main')
+            ,triggerHook: 'onEnter'
+            // ,offset: - LOGO.height() + 1
+        })
+        // .duration( $('.main').height() )
+        .duration( $('.main').height() + LOGO.height())
+        .addIndicators()
+        .addTo(PT.SM_CTRL);
+
+        SM_SCENE1.on('start enter leave end ', function(event) {
+            // console.log(event.type + ' - '+ event.state + ' - ' + event.scrollDirection );
+            // TweenMax.to('.homeplate-logo', 1, {opacity:0.2, ease:Power1.easeInOut})
+        
+            switch(event.type){
+                case "start" :
+                    if(event.scrollDirection === "FORWARD"){
+                        console.log('start - FORWARD');
+                    }else if(event.scrollDirection === "REVERSE"){
+                        console.log('start - REVERSE');
+// LOGO.removeClass('bgGradientToBottom');
+                    }
+                break; 
+
+                case "end" :
+                    if(event.scrollDirection === "FORWARD"){
+                        console.log('end - FORWARD');
+                        TweenMax.to(LOGO, 0, {position:'absolute', top:$('.main').height() + HP.height(), bottom:'initial'})
+// LOGO.removeClass('bgGradientToBottom');
+                    }else if(event.scrollDirection === "REVERSE"){
+                        console.log('end - REVERSE');
+                        TweenMax.to(LOGO, 0, {position:'fixed', top:'initial', bottom:0})
+// LOGO.addClass('bgGradientToBottom');
+                    }
+                break; 
+            }
+
+        });
+
+
+//~~
+        var SM_SCENE2 = new ScrollMagic.Scene({
+            // triggerElement: $('.hp-logo-trigger')
+            triggerElement: $('.hp-logo-trigger')
+            ,triggerHook: 'onLeave'
+            // ,offset: - $('.homeplate-logo').height()
+        })
+        .addIndicators()
+        .on("enter", function (event) {
+            // LOGO.addClass('beFixedTop')
+            TweenMax.to(LOGO, 0, {position:'fixed', top:0, bottom:'initial'})
+// LOGO.addClass('bgGradientToTop');
+        })        
+        .on("leave", function (event) {
+            // LOGO.removeClass('beFixedTop')
+            TweenMax.to(LOGO, 0, {position:'absolute', top:LOGO.offset().top, bottom:'initial'})
+// LOGO.removeClass('bgGradientToTop');
+        })        
+        .addTo(PT.SM_CTRL);
+
+
+
+
+
+
+/*
+
+        var SM_SCENE3 = new ScrollMagic.Scene({
+            triggerElement: $('.bg-red')
+            ,triggerHook: 'onEnter'
+            // ,offset: - LOGO.height() + 1
+        })
+        .duration( $('.bg-red').height())
+        // .setClassToggle('#BRANDONHAUN', "blue")
+        // .setTween( TweenMax.to('#BRANDON', 1, {fill:'blue'}))
+        .addIndicators()
+        .addTo(PT.SM_CTRL);
+
+
+*/
+
+
+
+
+        //  FOLLOW CURSOR :
+        var mySVG = $('.my-svg');  
+        TweenMax.set(mySVG, {transformOrigin:"-50% -50%" });
+
+        HP.on('mousemove', function(e){
+            // TweenMax.to($("#my-svg"), 0, {x: e.pageX, y:e.pageY });
+            TweenMax.to(mySVG, 0.5, {
+              x: e.pageX-mySVG.width()/2
+              ,y:e.pageY-mySVG.height()/2
+              ,ease:Power4.easeOut
+            });
+        });
+
+
+
+    
+    }
+
+
+
+
+
+
     ,buildLogo: function() { 
         PT.log('buildLogo(){', 'green');
 
+
+        //  LOGO RESIZER :
         $(window).resize(function(){
             $('.homeplate-logo').width( $(window).width() );
         });
 
- // $('.homeplate').height( $(window).height() - $('.homeplate-logo').height() );
- // $('.homeplate').height( $(window).height() + 20 );
+
+
+        //  FOLLOW CURSOR :
+        var mySVG = $('.my-svg');  
+        TweenMax.set(mySVG, {transformOrigin:"-50% -50%" });
+
+        $(".homeplate").on('mousemove', function(e){
+            // TweenMax.to($("#my-svg"), 0, {x: e.pageX, y:e.pageY });
+            TweenMax.to(mySVG, 0.5, {
+              x: e.pageX-mySVG.width()/2
+              ,y:e.pageY-mySVG.height()/2
+              ,ease:Power4.easeOut
+            });
+        });
+
+
+
+
+
+
+
+
+        $('.homeplate').height( $(window).height() );
+        // $('.homeplate').height( $(window).height() + 20 );
+        // $('.homeplate').height( $(window).height() - $('.homeplate-logo').height() );
 
 
 
@@ -126,6 +283,7 @@ var SITE = {
 
 //~~
         var scene2 = new ScrollMagic.Scene({
+            // triggerElement: $('.hp-logo-trigger')
             triggerElement: $('.hp-logo-trigger')
             ,triggerHook: 'onLeave'
             // ,offset: - $('.homeplate-logo').height()
@@ -144,6 +302,10 @@ var SITE = {
         .addTo(PT.SM_CTRL);
 
 
+
+
+
+
 /*
 //  EVENTS :
         scene1.on('start enter leave end ', function(event) {
@@ -151,24 +313,6 @@ var SITE = {
             // TweenMax.to('.homeplate-logo', 1, {opacity:0.2, ease:Power1.easeInOut})
         })
 */
-
-
-
-//  FOLLOW CURSOR :
-
-        var mySVG = $('.my-svg');  
-        TweenMax.set(mySVG, {transformOrigin:"-50% -50%" });
-
-        $(".homeplate").on('mousemove', function(e){
-            // TweenMax.to($("#my-svg"), 0, {x: e.pageX, y:e.pageY });
-            TweenMax.to(mySVG, 0.5, {
-              x: e.pageX-mySVG.width()/2
-              ,y:e.pageY-mySVG.height()/2
-              ,ease:Power4.easeOut
-            });
-        });
-
-
 
 
 

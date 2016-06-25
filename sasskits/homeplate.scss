@@ -103,20 +103,25 @@
     height:100%;
     overflow: hidden;
 
-    background-attachment:fixed;
-    background-color:green;
-
+    background-color:white;
+    // background-attachment:fixed;
+    
+    .no-touchevents & {
+        background-attachment:fixed;
+        // background-size:contain;
+    }
 
     // top:0;
     // transform:translate(0, -50%)
     
-
     // border:1px solid blue;
 }
 
 
- 
- 
+
+
+
+
 .homeplate-logo{
     z-index:60;
 
@@ -126,10 +131,14 @@
     position:relative;
     // transform:translateY(-100%); 
     
-    // position:fixed; bottom:0; left:0; right:0; width:100%; height:auto;
+    position:fixed; bottom:0; left:0; right:0; width:100%; height:auto;
 
-    &.beRel{
+    &.beRelative{
         position:relative !important ; 
+        top:initial; left:initial; bottom:initial; right:initial; height:auto;
+    }
+    &.beAbsolute{
+        position:absolute !important ; 
         top:initial; left:initial; bottom:initial; right:initial; height:auto;
     }
     &.beFixedTop{
@@ -145,8 +154,58 @@
         bottom:0; left:0; right:0; width:100%; height:auto;
     }
 
-    // position:fixed;
-    // bottom:0; left:0; right:0; width:100%; height:auto;
+
+
+
+    &:before{
+        content:' ';
+        position:absolute; top:50px; left:0; bottom:0; right:0; width:100%; height:100%; display:block;
+        opacity:0;
+        transition:0.2s;
+        z-index:0;
+        background: linear-gradient(to bottom,
+            rgba(255,255,255,0) 1%, 
+            rgba(255,255,255,0.5) 50%,     
+            rgba(255,255,255,1) 100%);     
+
+    }
+    &:after{
+        content:' ';
+        position:absolute; top:0; left:0; bottom:0; right:0; width:100%; height:100%; display:block;
+        opacity:0;
+        transition:0.2s;
+        z-index:0;
+        background: linear-gradient(to top,
+            rgba(255,255,255,0) 1%, 
+            rgba(255,255,255,0.5) 50%,     
+            rgba(255,255,255,1) 100%);     
+        
+    }
+
+    &.bgGradientToBottom{   
+        &:before{
+            top:0;
+            opacity:1;
+        }
+    }
+
+    &.bgGradientToTop{   
+        &:after{
+            opacity:1;
+        }
+    }
+
+    // svg{
+    #BRANDONHAUN{
+        position:relative;
+        z-index:1;
+    }
+     
+
+    
+
+
+
 
 }
 
@@ -179,9 +238,19 @@ svg{
     //     rgba(255,255,255,0) 1%, 
     //     rgba(255,255,255,0.5) 50%,     
     //     rgba(255,255,255,1) 100%);     
-
     
-
+    &.red{
+        #BRANDON,
+        #HAUN{
+            fill:indianred;
+        }
+    }
+    &.blue{
+        #BRANDON,
+        #HAUN{
+            fill:cadetblue;
+        }
+    }
 }
 
 #BRANDON{
@@ -257,13 +326,13 @@ button{
 
 
 .homeplate{
-    @include jagged(  $color: fff, 
-                        $size: 50, 
-                        $location: bottom, 
-                        $type: fill, 
-                        $side: inside, 
-                        $animate: true
-                    )    
+    // @include jagged(  $color: fff, 
+    //                     $size: 50, 
+    //                     $location: bottom, 
+    //                     $type: fill, 
+    //                     $side: inside, 
+    //                     $animate: true
+    //                 )    
 }
 
 
@@ -279,15 +348,13 @@ button{
     // }
 
 
-    @include jagged(  $color: fff, 
-                        $size: 50, 
-                        $location: top, 
-                        $type: fill, 
-                        $side: outside, 
-                        $animate: true
-                    )
-
-
+    // @include jagged(  $color: fff, 
+    //                     $size: 50, 
+    //                     $location: top, 
+    //                     $type: fill, 
+    //                     $side: outside, 
+    //                     $animate: true
+    //                 )
 
 
     // @include jagged(  $color: 333, 
@@ -298,14 +365,15 @@ button{
     //                     $animate: false
     //                 )
 
-
-
 }
+
+
 
 
 .homeplate-bg{
     clip-path: url(#myClip);
 }
+
 
 
 
@@ -325,16 +393,12 @@ button{
 }
 
 
+
+
+
 .my-svg{
-    // border:1px solid red;
     position:absolute;
     display:block;
-    // width:110%; height:110%;
-    // top:-5%; left:-5%;
-    // width:100%; height:auto;
-    // top:50%; left:50%;
-    // transform:translate(-50%, -50%);
-
 }
 
 
