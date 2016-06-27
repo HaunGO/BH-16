@@ -2,33 +2,6 @@
 "CodeKitInfo": "This is a CodeKit 2.x project configuration file. It is designed to sync project settings across multiple machines. MODIFYING THE CONTENTS OF THIS FILE IS A POOR LIFE DECISION. If you do so, you will likely cause CodeKit to crash. This file is not useful unless accompanied by the project that created it in CodeKit 2. This file is not backwards-compatible with CodeKit 1.x. For more information, see: http:\/\/incident57.com\/codekit",
 "creatorBuild": "19127",
 "files": {
-	"\/_deploy\/assets\/css\/lib\/nanogallery.min.css": {
-		"fileType": 16,
-		"ignore": 0,
-		"ignoreWasSetByUser": 0,
-		"inputAbbreviatedPath": "\/_deploy\/assets\/css\/lib\/nanogallery.min.css",
-		"outputAbbreviatedPath": "No Output Path",
-		"outputPathIsOutsideProject": 0,
-		"outputPathIsSetByUser": 0
-		},
-	"\/_deploy\/assets\/css\/lib\/nanogallery_clean.min.css": {
-		"fileType": 16,
-		"ignore": 0,
-		"ignoreWasSetByUser": 0,
-		"inputAbbreviatedPath": "\/_deploy\/assets\/css\/lib\/nanogallery_clean.min.css",
-		"outputAbbreviatedPath": "No Output Path",
-		"outputPathIsOutsideProject": 0,
-		"outputPathIsSetByUser": 0
-		},
-	"\/_deploy\/assets\/css\/SITE-VARS_CMS.css": {
-		"fileType": 16,
-		"ignore": 1,
-		"ignoreWasSetByUser": 0,
-		"inputAbbreviatedPath": "\/_deploy\/assets\/css\/SITE-VARS_CMS.css",
-		"outputAbbreviatedPath": "No Output Path",
-		"outputPathIsOutsideProject": 0,
-		"outputPathIsSetByUser": 0
-		},
 	"\/_deploy\/assets\/css\/site.css": {
 		"fileType": 16,
 		"ignore": 1,
@@ -38,12 +11,12 @@
 		"outputPathIsOutsideProject": 0,
 		"outputPathIsSetByUser": 0
 		},
-	"\/_deploy\/assets\/js\/lib\/jquery.nanogallery.js": {
+	"\/_deploy\/assets\/js\/bh-form.js": {
 		"fileType": 64,
 		"ignore": 0,
 		"ignoreWasSetByUser": 0,
-		"inputAbbreviatedPath": "\/_deploy\/assets\/js\/lib\/jquery.nanogallery.js",
-		"outputAbbreviatedPath": "\/_deploy\/assets\/jquery.nanogallery.min.js",
+		"inputAbbreviatedPath": "\/_deploy\/assets\/js\/bh-form.js",
+		"outputAbbreviatedPath": "\/_deploy\/assets\/bh-form.min.js",
 		"outputPathIsOutsideProject": 0,
 		"outputPathIsSetByUser": 0,
 		"outputStyle": 1,
@@ -113,16 +86,32 @@
 		"outputStyle": 1,
 		"syntaxCheckerStyle": 1
 		},
-	"\/_deploy\/assets\/pt-base-v9 copy.min.js": {
-		"fileType": 64,
+	"\/_deploy\/assets\/php\/send.php": {
+		"fileType": 8192,
+		"ignore": 0,
+		"ignoreWasSetByUser": 0,
+		"inputAbbreviatedPath": "\/_deploy\/assets\/php\/send.php",
+		"outputAbbreviatedPath": "No Output Path",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 0
+		},
+	"\/_deploy\/assets\/php\/submitform.php": {
+		"fileType": 8192,
+		"ignore": 0,
+		"ignoreWasSetByUser": 0,
+		"inputAbbreviatedPath": "\/_deploy\/assets\/php\/submitform.php",
+		"outputAbbreviatedPath": "No Output Path",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 0
+		},
+	"\/_deploy\/assets\/site.css": {
+		"fileType": 16,
 		"ignore": 1,
 		"ignoreWasSetByUser": 0,
-		"inputAbbreviatedPath": "\/_deploy\/assets\/pt-base-v9 copy.min.js",
-		"outputAbbreviatedPath": "\/_deploy\/assets\/pt-base-v9 copy.min.min.js",
+		"inputAbbreviatedPath": "\/_deploy\/assets\/site.css",
+		"outputAbbreviatedPath": "No Output Path",
 		"outputPathIsOutsideProject": 0,
-		"outputPathIsSetByUser": 0,
-		"outputStyle": 1,
-		"syntaxCheckerStyle": 1
+		"outputPathIsSetByUser": 0
 		},
 	"\/_deploy\/assets\/site.min.js": {
 		"fileType": 64,
@@ -140,15 +129,6 @@
 		"ignore": 1,
 		"ignoreWasSetByUser": 0,
 		"inputAbbreviatedPath": "\/_deploy\/index.html",
-		"outputAbbreviatedPath": "No Output Path",
-		"outputPathIsOutsideProject": 0,
-		"outputPathIsSetByUser": 0
-		},
-	"\/_deploy\/site.html": {
-		"fileType": 8192,
-		"ignore": 1,
-		"ignoreWasSetByUser": 0,
-		"inputAbbreviatedPath": "\/_deploy\/site.html",
 		"outputAbbreviatedPath": "No Output Path",
 		"outputPathIsOutsideProject": 0,
 		"outputPathIsSetByUser": 0
@@ -5408,10 +5388,19 @@
 		"outputPathIsOutsideProject": 0,
 		"outputPathIsSetByUser": 0
 		},
+	"\/site-backup-v1.kit": {
+		"fileType": 2048,
+		"ignore": 1,
+		"ignoreWasSetByUser": 1,
+		"inputAbbreviatedPath": "\/site-backup-v1.kit",
+		"outputAbbreviatedPath": "\/site-backup-v1.html",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 0
+		},
 	"\/site-v1.kit": {
 		"fileType": 2048,
-		"ignore": 0,
-		"ignoreWasSetByUser": 0,
+		"ignore": 1,
+		"ignoreWasSetByUser": 1,
 		"inputAbbreviatedPath": "\/site-v1.kit",
 		"outputAbbreviatedPath": "\/site copy.html",
 		"outputPathIsOutsideProject": 0,
@@ -5477,7 +5466,7 @@
 		"ignore": 0,
 		"ignoreWasSetByUser": 0,
 		"inputAbbreviatedPath": "\/site.scss",
-		"outputAbbreviatedPath": "\/_deploy\/assets\/css\/site.css",
+		"outputAbbreviatedPath": "\/_deploy\/assets\/site.css",
 		"outputPathIsOutsideProject": 0,
 		"outputPathIsSetByUser": 1,
 		"outputStyle": 3,

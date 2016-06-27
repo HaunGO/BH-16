@@ -24,10 +24,13 @@ $(function() {
     // console.log('site specific js file');
 
 
+
+
+
     SITE.init();
 
 
-    $('.homeplate-bg').fitVids(); 
+    // $('.homeplate-bg').fitVids(); 
     $('.homeplate-headline > h1').fitText(1.5);
 
 
@@ -49,6 +52,9 @@ $(function() {
 // }).resize();
 
 
+
+    // $('.homeplate-logo').addClass('filterGlitch');
+    // $('.footer').addClass('filterGlitch');
 
 
 
@@ -81,13 +87,42 @@ var SITE = {
 
         SITE.buildFlickr();
 
-        // SITE.buildGlitch($('.homeplate-logo'));
 
-        // SITE.buildGlitch($('.my-svg'));
 
+        SITE.buildGlitch($('.homeplate-logo'));
+
+        if( $('html').hasClass('no-touchevents') ){
+        // if( Modernizr.touchevents ){
+            console.log('NO TOUCH EVENTS !!');
+            SITE.buildGlitch($('.my-svg'));    
+        }
+
+ 
         // SITE.buildLogo();
         
         SITE.buildLogo2();
+
+
+
+
+
+
+        //  FOLLOW CURSOR :
+  
+        var mySVG = $('.my-svg');  
+        // TweenMax.set(mySVG, {transformOrigin:"-50% -50%" });
+
+        $('.homeplate').on('mousemove', function(e){
+            // TweenMax.to($("#my-svg"), 0, {x: e.pageX, y:e.pageY });
+            TweenMax.to(mySVG, 0.5, {
+              x: e.pageX-mySVG.width()/2
+              ,y:e.pageY-mySVG.height()/2
+              ,ease:Power4.easeOut
+            });
+        });
+
+
+
 
 
 
@@ -115,13 +150,24 @@ var SITE = {
         //  LOGO RESIZER :
         $(window).resize(function(){
             LOGO.width( $(window).width() );
+
+            
+            // console.log($(window).width() );
+            // HP.height( $(window).height() ).width( $(window).width() );
+
+            // $('.my-svg').attr("viewBox", "0 0 "+$(window).width()+" "+$(window).height())
+            // $('.my-svg circle').attr("r", $(window).width()/2)
+            // <svg class="my-svg" viewBox="0 0 1000 1000" >
+            // <circle cx="500" cy="500" r="500" />
+
+
         });
 
         // RESIZE HOMEPLATE :
-        HP.height( $(window).height() );
+        // HP.height( $(window).height() );
 
 
-// LOGO.addClass('bgGradientToBottom');
+LOGO.addClass('bgGradientToBottom');
 
 
         var SM_SCENE1 = new ScrollMagic.Scene({
@@ -130,8 +176,8 @@ var SITE = {
             // ,offset: - LOGO.height() + 1
         })
         // .duration( $('.main').height() )
-        .duration( $('.main').height() + LOGO.height())
-        .addIndicators()
+        .duration( $('.main').height() + LOGO.height() )
+        // .addIndicators()
         .addTo(PT.SM_CTRL);
 
         SM_SCENE1.on('start enter leave end ', function(event) {
@@ -144,7 +190,7 @@ var SITE = {
                         console.log('start - FORWARD');
                     }else if(event.scrollDirection === "REVERSE"){
                         console.log('start - REVERSE');
-// LOGO.removeClass('bgGradientToBottom');
+LOGO.removeClass('bgGradientToBottom');
                     }
                 break; 
 
@@ -152,11 +198,14 @@ var SITE = {
                     if(event.scrollDirection === "FORWARD"){
                         console.log('end - FORWARD');
                         TweenMax.to(LOGO, 0, {position:'absolute', top:$('.main').height() + HP.height(), bottom:'initial'})
-// LOGO.removeClass('bgGradientToBottom');
+LOGO.removeClass('bgGradientToBottom');
+LOGO.addClass('white');
+
                     }else if(event.scrollDirection === "REVERSE"){
                         console.log('end - REVERSE');
                         TweenMax.to(LOGO, 0, {position:'fixed', top:'initial', bottom:0})
-// LOGO.addClass('bgGradientToBottom');
+LOGO.addClass('bgGradientToBottom');
+LOGO.removeClass('white');
                     }
                 break; 
             }
@@ -171,14 +220,16 @@ var SITE = {
             ,triggerHook: 'onLeave'
             // ,offset: - $('.homeplate-logo').height()
         })
-        .addIndicators()
+        // .addIndicators()
         .on("enter", function (event) {
             // LOGO.addClass('beFixedTop')
+            // LOGO.addClass('white');
             TweenMax.to(LOGO, 0, {position:'fixed', top:0, bottom:'initial'})
 // LOGO.addClass('bgGradientToTop');
         })        
         .on("leave", function (event) {
             // LOGO.removeClass('beFixedTop')
+            // LOGO.removeClass('white');
             TweenMax.to(LOGO, 0, {position:'absolute', top:LOGO.offset().top, bottom:'initial'})
 // LOGO.removeClass('bgGradientToTop');
         })        
@@ -190,7 +241,6 @@ var SITE = {
 
 
 /*
-
         var SM_SCENE3 = new ScrollMagic.Scene({
             triggerElement: $('.bg-red')
             ,triggerHook: 'onEnter'
@@ -208,9 +258,13 @@ var SITE = {
 
 
 
+
+
+/*        
         //  FOLLOW CURSOR :
+  
         var mySVG = $('.my-svg');  
-        TweenMax.set(mySVG, {transformOrigin:"-50% -50%" });
+        // TweenMax.set(mySVG, {transformOrigin:"-50% -50%" });
 
         HP.on('mousemove', function(e){
             // TweenMax.to($("#my-svg"), 0, {x: e.pageX, y:e.pageY });
@@ -222,7 +276,7 @@ var SITE = {
         });
 
 
-
+*/
     
     }
 
@@ -238,6 +292,7 @@ var SITE = {
         //  LOGO RESIZER :
         $(window).resize(function(){
             $('.homeplate-logo').width( $(window).width() );
+
         });
 
 
@@ -262,7 +317,7 @@ var SITE = {
 
 
 
-        $('.homeplate').height( $(window).height() );
+        HP.height( $(window).height() ).width( $(window).width() );
         // $('.homeplate').height( $(window).height() + 20 );
         // $('.homeplate').height( $(window).height() - $('.homeplate-logo').height() );
 
@@ -372,7 +427,7 @@ var SITE = {
         PT.log('buildGlitch(){', 'green');
 
         // var _target = $('.viewport');
-        var _target = $('.homeplate-logo');
+        // var _target = $('.homeplate-logo');
         var _target = _this_;
 
 
@@ -415,11 +470,11 @@ var SITE = {
 
 
 
-            btn.on('click', function() {
+            // btn.on('click', function() {
 
                 // $('.viewport').addClass('filterGlitch');
-                tl_GLITCH.restart();
-            });tl_GLITCH
+                // tl_GLITCH.restart();
+            // });
 
             // TweenMax.delayedCall(2, playStatic);
             //My instructions...
@@ -427,15 +482,15 @@ var SITE = {
 
 
             function resetTimer(){
-                TweenMax.delayedCall( Math.floor(Math.random() * 10) , playStatic);
+                TweenMax.delayedCall( Math.floor(Math.random() * 10) , playGlitch);
             }
 
-            function playStatic(){
-                console.log('honk');
+            function playGlitch(){
+                console.log('playGlitch()');
                 tl_GLITCH.restart();                
             }
 
-            playStatic();
+            playGlitch();
 
     }
 
@@ -528,27 +583,29 @@ var SITE = {
             switch(PT.getSize()){
 
                 case "sm":
-                   fPic.attr("src", data.items[num].media.m.replace('_m', '_z'))
+                   fPic.attr("src", data.items[num].media.m.replace('_m', '_c'))
                    console.log('sm');
                 break;
 
                 case "md":
-                   fPic.attr("src", data.items[num].media.m.replace('_m', '_c'))
+                   fPic.attr("src", data.items[num].media.m.replace('_m', '_b'))
                    console.log('md');
                 break;
 
                 case "lg":
                    fPic.attr("src", data.items[num].media.m.replace('_m', '_b'))
+                   // fPic.attr("src", data.items[num].media.m.replace('_m', '_o'))
                    console.log('lg');
                 break;
 
-                case "xl":
-                   fPic.attr("src", data.items[num].media.m.replace('_m', '_h'))
-                   console.log('xl');
-                break;
+                // case "xl":
+                //    fPic.attr("src", data.items[num].media.m.replace('_m', '_h'))
+                //    console.log('xl');
+                // break;
 
                 default:
-                   fPic.attr("src", data.items[num].media.m.replace('_m', '_z'))
+                   // fPic.attr("src", data.items[num].media.m.replace('_m', '_z'))
+                   fPic.attr("src", data.items[num].media.m.replace('_m', '_b'))
 
             }
 
